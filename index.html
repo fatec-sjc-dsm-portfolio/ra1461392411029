@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pedro Prevides Campos · Software Development Student</title>
+<meta name="description" content="Academic portfolio of Pedro Prevides Campos, Multiplatform Software Development student at FATEC São José dos Campos.">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header>
+  <b>Pedro Prevides Campos</b>
+  <nav aria-label="Main"><a href="#about">About</a><a href="#skills">Skills</a><a href="#projects">Projects</a><a href="#education">Education</a><a href="#contact">Contact</a></nav>
+</header>
+<main>
+  <section class="hero" id="home">
+    <img src="assets/photo.jpg" alt="Portrait of Pedro Prevides Campos">
+    <div>
+      <h1>Pedro Prevides Campos</h1>
+      <p class="lead">Software Development student · Aspiring QA/QC professional</p>
+      <p>6th-semester student of Multiplatform Software Development (DSM) at FATEC São José dos Campos. <strong>Academic goal:</strong> complete the degree. <strong>Professional goal:</strong> enter and grow in Quality Assurance and Quality Control (QA/QC).</p>
+      <ul class="chips" aria-label="Areas of interest" id="interests"></ul>
+      <div class="btns"><a class="btn" href="#projects">View projects</a><a class="btn alt" href="#contact">Get in touch</a></div>
+    </div>
+  </section>
+
+  <section id="about">
+    <h2>About me</h2>
+    <p>I’m a Software Development student at FATEC São José dos Campos with a focus on web development. I enjoy the whole process of building software, front-end and back-end, mainly with Python and Java, and I’m also familiar with JavaScript, TypeScript and Node.js. My long-term dream is to write a fantasy novel of my own and make a video game based on it.</p>
+  </section>
+
+  <section id="skills">
+    <h2>Technical skills</h2>
+    <div class="grid" id="skillGrid"></div>
+  </section>
+
+  <section id="projects">
+    <h2>Academic projects (API)</h2>
+    <p class="meta">Interdisciplinary Projects developed with partner organizations, in chronological order.</p>
+    <div id="projectList"></div>
+  </section>
+
+  <section id="education">
+    <h2>Education and languages</h2>
+    <div class="grid" id="eduGrid"></div>
+  </section>
+
+  <section id="contact">
+    <h2>Contact</h2>
+    <div class="grid" id="contactGrid"></div>
+  </section>
+</main>
+<footer>© 2026 Pedro Prevides Campos</footer>
+
+<script>
+/* ===== CONTENT (edit or translate here; the layout below stays the same) ===== */
+const GH = "https://github.com/GalaxyBurst/"; // links point to your personal copies (forks)
+const interests = ["Back-End Development","REST APIs","AI / LLMs","Quality Assurance","Quality Control"];
+const skills = [
+  ["Languages","Python, Java, JavaScript, TypeScript, HTML, CSS"],
+  ["Frameworks and libraries","Flask, Node.js, Express, React, Prisma, Tailwind, Chart.js, Pytest, Swagger"],
+  ["Databases","MySQL, PostgreSQL, MongoDB, QDrant"],
+  ["AI and tools","Ollama (LLM agents), Git, Jira, Figma, Arduino"]
+];
+const projects = [
+ {title:"Smart Farm",period:"2024 · 1st semester",partner:"i9 FATEC – Smart Farming Project (FATEC São José dos Campos)",
+  problem:"Monitoring, storing and continuously analyzing the environmental variables of an indoor greenhouse (air humidity, soil humidity, air temperature and water volume), so the Smart Farming team can follow cultivation conditions accurately.",
+  solution:"A website that reads the data collected by the smart greenhouse supplied by FATEC professors, stores it in a MySQL relational database and shows it in interactive charts.",
+  tech:["Git","Flask","Python","HTML","CSS","JavaScript","Chart.js","MySQL","Figma","Jira"],
+  contrib:"User interface elements (buttons and clickable components), user authentication, page redirection and project documentation.",
+  hard:[["Python and Flask","Built the authentication flow and page routing on the back end."],["CSS","Styled interactive interface components."],["Git and Jira","Used version control and task tracking in a team for the first time."]],
+  soft:["My first contact with software development and my first complex team project.","Learned to split work, follow progress on a shared board and collaborate through Git."],
+  repo:"Smart-farm"},
+ {title:"Inv.Sort",period:"2024 · 2nd semester",partner:"Internal client (FATEC São José dos Campos)",
+  problem:"Controlling, organizing and auditing the entry, exit and movement of perishable and non-perishable products spread across several sectors and batches, avoiding inventory discrepancies and producing accurate management reports.",
+  solution:"A complete web system for product and stock control. It manages item types, batches, categories, suppliers and sectors, and provides reports and advanced movement filters.",
+  tech:["JavaScript","Node.js","Express","React","Prisma","Tailwind","MySQL","Figma"],
+  contrib:"Scrum Master of the team; loading indicators in the interface; password-protected routes; responsive pages.",
+  hard:[["JavaScript and React","Implemented loading states, route protection and responsive layouts."]],
+  soft:["My first leadership role, as Scrum Master: I practiced tracking deadlines, distributing tasks and communicating blockers.","Client feedback showed that we had designed the interface around our own preferences instead of the client’s expectations. Since then, we validate requirements with the client more attentively."],
+  repo:"inv.sort"},
+ {title:"Checkpoint",period:"2025 · 1st semester",partner:"Necto Systems",
+  problem:"Managing, monitoring and controlling employees’ working hours with accuracy: clock-in and clock-out records, overtime calculation, absence management and analytical reports to support decisions.",
+  solution:"A web application for workday management and electronic timekeeping, with precise entry and exit records, automatic hour calculation, absence management and an intuitive dashboard for data analysis and reports.",
+  tech:["Java","React","TypeScript","MySQL","MongoDB"],
+  contrib:"Mainly back end: mapped every entity to its table and fields; built the break and vacation request flow (available-days check, request creation, admin approval or denial); tested the application to find and fix bugs.",
+  hard:[["Java","Entity mapping and the request logic described above."],["TypeScript","Fixed issues that prevented break and vacation notifications from being parsed by the back end."],["MySQL","Detected duplicated fields caused by improper entity mapping and re-mapped all entities."]],
+  soft:["With new technologies and fewer sprints than expected (three instead of four), I improved how I ask for help without depending on others.","Adapted to changes in team capacity and learned to make task ownership explicit to avoid overlapping work."],
+  repo:"checkpoint"},
+ {title:"Nimbus",period:"2025 · 2nd semester",partner:"Tecsus",
+  problem:"Collecting, validating, processing and visualizing meteorological data with high integrity and continuous availability in the cloud, so that climate monitoring is reliable.",
+  solution:"Low-cost Arduino-based weather stations that periodically collect humidity, temperature and light level and send it to a server. A portal shows dashboards and downloadable reports, raises alarms on abnormal readings and explains the math behind the calculations.",
+  tech:["Node.js","React","JavaScript","TypeScript","MongoDB","PostgreSQL","Arduino"],
+  contrib:"Back-end sorting, filtering and pagination for every entity that needed it; API documentation with Swagger; integration with the front end, adapting responses where necessary.",
+  hard:[["JavaScript","Most used language; learned Prisma for database access and Swagger for API docs."],["PostgreSQL","Designed and queried relational schemas."],["TypeScript","Verified that filtered and sorted data was displayed correctly."]],
+  soft:["With a changing team, I learned to set aside differences and work toward shared goals.","Improved communication of technical and personal difficulties, which made the team more transparent.","Learned how hard consistent DevOps practices are and how to adapt workflows under imperfect conditions."],
+  repo:"Nimbus"},
+ {title:"PrecedentIA",period:"2026 · 1st semester",partner:"Xertica.ai",
+  problem:"Legal professionals in Latin America face a high caseload. Judges spend valuable time manually searching for precedents in initial petitions, time that could go to analyzing the merits of the case.",
+  solution:"An AI-powered assistant that uses Generative AI to automate document screening and suggest legal arguments quickly and intelligently.",
+  tech:["Python","Ollama","Pytest","Flask","QDrant"],
+  contrib:"Most of the “Summary” microservice, which handles all LLM operations: agents that structure a text, summarize it, and analyze how well a precedent matches an initial petition. Minor contributions to the main API (saving PDF files to the database).",
+  hard:[["Python","Returned to the language after a year and regained fluency."],["Ollama","Built LLM agents from scratch with confidence in the approach."],["QDrant","First experience with a vector database."]],
+  soft:["Applied lessons from earlier projects: standardization, deadlines and mandatory testing libraries from the start.","Productivity improved noticeably even with two new members, and I learned to handle problems that appear at inconvenient moments."],
+  repo:"PrecedentIA"}
+];
+const P = "assets/projects/";
+const media = {
+  "Smart Farm": {shots:[["smart-farm.gif",1280,720,"Smart Farm dashboard showing daily readings of air humidity, soil humidity, temperature and irrigation water volume","Dashboard with the daily greenhouse readings (interface in Portuguese)"]]},
+  "Inv.Sort": {logo:["invsort-logo.png",1280,212],shots:[["invsort-movements.png",1058,525,"Inv.Sort product movement screen with filters, sorting, PDF download and a results table","Product movement history with filters and PDF export (interface in Portuguese)"],["invsort-category.png",460,535,"Inv.Sort dialog for creating a product category with an image and a name","Create category dialog (interface in Portuguese)"]]},
+  "Checkpoint": {logo:["checkpoint-logo.png",1034,255]},
+  "Nimbus": {logo:["nimbus-logo.png",697,171]},
+  "PrecedentIA": {logo:["precedentia-logo.png",1038,277]}
+};
+const education = [
+  ["Multiplatform Software Development (DSM)","FATEC São José dos Campos · Started in 2024 · Currently in the 6th semester"],
+  ["Portuguese","Native"],
+  ["English","Self-taught"]
+];
+const contacts = [
+  ["GitHub","https://github.com/GalaxyBurst","github.com/GalaxyBurst"],
+  ["LinkedIn","https://www.linkedin.com/in/pedro-prevides-87a0b71a8/","linkedin.com/in/pedro-prevides-87a0b71a8"],
+  ["Email","mailto:pedro.campos10@aluno.cps.sp.gov.br","pedro.campos10@aluno.cps.sp.gov.br"]
+];
+
+/* ===== RENDER ===== */
+const $ = id => document.getElementById(id);
+const li = a => a.map(x => `<li>${x}</li>`).join("");
+$("interests").innerHTML = li(interests);
+$("skillGrid").innerHTML = skills.map(([t,d]) => `<div class="card"><h3>${t}</h3><p>${d}</p></div>`).join("");
+$("projectList").innerHTML = projects.map(p => { const m = media[p.title] || {}; return `
+  <article class="card project">
+    ${m.logo ? `<img class="logo" src="${P+m.logo[0]}" width="${m.logo[1]}" height="${m.logo[2]}" alt="${p.title} logo">` : ""}
+    <h3>${p.title}</h3>
+    <p class="meta">${p.period} — Partner: ${p.partner}</p>
+    <h4>Problem</h4><p>${p.problem}</p>
+    <h4>Solution developed</h4><p>${p.solution}</p>
+    <h4>Technologies</h4><ul class="chips">${li(p.tech)}</ul>
+    <h4>Personal contributions</h4><p>${p.contrib}</p>
+    ${m.shots ? `<h4>Screenshots</h4><div class="shots">${m.shots.map(s => `<figure><img src="${P+s[0]}" width="${s[1]}" height="${s[2]}" alt="${s[3]}" loading="lazy"><figcaption>${s[4]}</figcaption></figure>`).join("")}</div>` : ""}
+    <details><summary>Hard skills developed</summary><ul>${p.hard.map(([n,d]) => `<li><strong>${n}:</strong> ${d}</li>`).join("")}</ul></details>
+    <details><summary>Soft skills developed</summary><ul>${li(p.soft)}</ul></details>
+    <p><a href="${GH}${p.repo}">View repository on GitHub</a></p>
+  </article>`; }).join("");
+$("eduGrid").innerHTML = education.map(([t,d]) => `<div class="card"><h3>${t}</h3><p>${d}</p></div>`).join("");
+$("contactGrid").innerHTML = contacts.map(([t,u,d]) => `<div class="card"><h3>${t}</h3><p><a href="${u}">${d}</a></p></div>`).join("");
+</script>
+</body>
+</html>
